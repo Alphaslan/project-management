@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+    <h2>Main Dashboard</h2>
+    <a th:text="${appVersion}"></a>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+
+            <h4>Current Employee Project Count</h4>
+            <table class="table table-bordered table-stripped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Employee First Name</th>
+                    <th>Employee Last Name</th>
+                    <th> Project Count</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="anEmployeeProjectCount : ${employeeListProjectsCnt}">
+                    <td th:text="${anEmployeeProjectCount.firstName}"/>
+                    <td th:text="${anEmployeeProjectCount.lastName}"/>
+                    <td th:text="${anEmployeeProjectCount.projectCount}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <div>
+            <h4>Current Projects</h4>
+            <table class="table table-bordered table-stripped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Project Name</th>
+                    <th> Project Stage</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="aProject : ${projectList}">
+                    <td th:text="${aProject.name}"/>
+                    <td th:text="${aProject.stage}"/>
+                </tr>
+                </tbody>
+            </table>
+                </div>
+
+            <div>
+                <h4>Project Status Chart</h4>
+                <table class="table table-bordered table-stripped">
+                    <thead class="thead-dark">
+                    <th>State</th>
+                    <th>Count</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="chartData :${chartValues}">
+                        <td th:text="${chartData.label}"/>
+                        <td th:text="${chartData.value}"/>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
